@@ -32,6 +32,7 @@ RUN git clone --recursive https://github.com/GMAvaliani/GS_ICP_SLAM
 ## Dependency
 RUN echo "export CUDA_HOME=/usr/local/cuda && export PATH=/usr/local/cuda-11.8/bin:$PATH && LD_LIBRARY_PATH=/usr/local/cuda-11.8/lib64:/lib64:$LD_LIBRARY_PATH" >> ~/.bashrc
 RUN pip install opencv-contrib-python scipy tqdm plyfile
+RUN pip install runpod
 RUN pip install torch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2 --index-url https://download.pytorch.org/whl/cu118
 RUN pip install torchmetrics
 RUN sudo apt-get install -y ninja-build
