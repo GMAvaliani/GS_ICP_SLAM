@@ -27,7 +27,7 @@ RUN sudo apt install -y ros-noetic-desktop-full
 
 # GS-ICP SLAM
 WORKDIR /home
-RUN git clone --recursive https://github.com/Lab-of-AI-and-Robotics/GS_ICP_SLAM.git
+RUN git clone --recursive https://github.com/GMAvaliani/GS_ICP_SLAM
 
 ## Dependency
 RUN echo "export CUDA_HOME=/usr/local/cuda && export PATH=/usr/local/cuda-11.8/bin:$PATH && LD_LIBRARY_PATH=/usr/local/cuda-11.8/lib64:/lib64:$LD_LIBRARY_PATH" >> ~/.bashrc
