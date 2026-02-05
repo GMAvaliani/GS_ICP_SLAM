@@ -9,7 +9,19 @@ Docker and nvidia-docker2 must be installed.
 cd docker_folder
 docker build -t gsidocker:latest .
 ```
+### Build directly from GitHub (no local clone)
+If you don't have a local checkout, you can build straight from GitHub:
+```bash
+docker build -t gsidocker:latest \
+  https://github.com/GMAvaliani/GS_ICP_SLAM.git#main:docker_folder
+```
 
+To override the repository that gets cloned inside the image:
+```bash
+docker build -t gsidocker:latest \
+  --build-arg REPO_URL=https://github.com/GMAvaliani/GS_ICP_SLAM.git \
+  https://github.com/GMAvaliani/GS_ICP_SLAM.git#main:docker_folder
+```
 ## Make GS-ICP SLAM container
 
 When making docker container, users must set 'dataset directory of main environment' and 'shared memory size'.
@@ -54,7 +66,7 @@ DATASET_PATH="dataset/Replica" #<- Change this to the dataset directory in the d
 This image includes a minimal FastAPI server for Load Balancer endpoints.
 
 ### Runpod settings
-- Container start command: `uvicorn app:app --host 0.0.0.0 --port 8000`
+- Container start command: `uvicorn app:app --host 0.0.0.0 --port 8000` (optional; the image already defaults to this)
 - Expose HTTP ports: `8000`
 - Recommended container disk: 50–100 GB
 
