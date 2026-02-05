@@ -1,5 +1,6 @@
 FROM nvidia/cuda:11.8.0-devel-ubuntu20.04
 ARG DEBIAN_FRONTEND=noninteractive
+ARG REPO_URL=https://github.com/GMAvaliani/GS_ICP_SLAM.git
 
 RUN apt-get update && apt-get -y upgrade
 RUN apt-get -y install sudo
@@ -27,7 +28,7 @@ RUN sudo apt install -y ros-noetic-desktop-full
 
 # GS-ICP SLAM
 WORKDIR /home
-RUN git clone --recursive https://github.com/GMAvaliani/GS_ICP_SLAM
+RUN git clone --recursive ${REPO_URL}
 
 ## Dependency
 RUN echo "export CUDA_HOME=/usr/local/cuda && export PATH=/usr/local/cuda-11.8/bin:$PATH && LD_LIBRARY_PATH=/usr/local/cuda-11.8/lib64:/lib64:$LD_LIBRARY_PATH" >> ~/.bashrc
