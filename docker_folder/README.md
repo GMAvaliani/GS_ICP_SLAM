@@ -47,3 +47,24 @@ replica.sh
 OUTPUT_PATH="experiments/results"
 DATASET_PATH="dataset/Replica" #<- Change this to the dataset directory in the docker container
 ```
+
+```
+
+## FastAPI (Runpod Serverless Load Balancer)
+This image includes a minimal FastAPI server for Load Balancer endpoints.
+
+### Runpod settings
+- Container start command: `uvicorn app:app --host 0.0.0.0 --port 8000`
+- Expose HTTP ports: `8000`
+- Recommended container disk: 50–100 GB
+
+### Example request
+```bash
+curl -X POST http://<RUNPOD_ENDPOINT>/run \
+  -H "Content-Type: application/json" \
+  -d '{
+    "dataset_path": "/home/dataset/Replica/room0",
+    "config_path": "configs/Replica/caminfo.txt",
+    "output_path": "experiments/results/room0"
+  }'
+```
