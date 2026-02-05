@@ -35,6 +35,7 @@ RUN pip install opencv-contrib-python scipy tqdm plyfile
 RUN pip install runpod
 RUN pip install torch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2 --index-url https://download.pytorch.org/whl/cu118
 RUN pip install torchmetrics
+RUN pip install fastapi uvicorn
 RUN sudo apt-get install -y ninja-build
 RUN pip3 install --upgrade pip
 RUN pip3.9 install open3d --ignore-installed PyYAML
@@ -91,3 +92,8 @@ RUN sudo make install
 WORKDIR /home/GS_ICP_SLAM/SIBR_viewers
 RUN cmake -Bbuild . -DCMAKE_BUILD_TYPE=Release
 RUN cmake --build build -j4 --target install
+
+WORKDIR /opt/server
+COPY server/ /opt/server/
+EXPOSE 8000
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
